@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.WebUI", "StokTakipKatmanli.WebUI\StokTakipKatmanli.WebUI.csproj", "{2BC2B1F6-89E4-4735-9A1C-2EA91D122053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.Core", "StokTakipKatmanli.Core\StokTakipKatmanli.Core.csproj", "{2570F9F0-E607-4CAD-9D7E-72E939CE2025}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BC2B1F6-89E4-4735-9A1C-2EA91D122053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC2B1F6-89E4-4735-9A1C-2EA91D122053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC2B1F6-89E4-4735-9A1C-2EA91D122053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC2B1F6-89E4-4735-9A1C-2EA91D122053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2570F9F0-E607-4CAD-9D7E-72E939CE2025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2570F9F0-E607-4CAD-9D7E-72E939CE2025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2570F9F0-E607-4CAD-9D7E-72E939CE2025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2570F9F0-E607-4CAD-9D7E-72E939CE2025}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFFFB9FD-6B9E-47A1-8320-8CBABEFDB0C4}
+	EndGlobalSection
+EndGlobal
