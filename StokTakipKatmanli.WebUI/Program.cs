@@ -1,3 +1,6 @@
+using StokTakipKatmanli.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace StokTakipKatmanli.WebUI
 {
     public class Program
@@ -9,7 +12,11 @@ namespace StokTakipKatmanli.WebUI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+            builder.Services.AddDbContext<DatabaseContext>(); //uygulamayý cs dosyasýna ekledik baðlantý adresi için
+
+			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); //oturum açma
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
