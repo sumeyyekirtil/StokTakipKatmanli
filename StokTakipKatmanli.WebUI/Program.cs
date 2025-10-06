@@ -12,7 +12,7 @@ namespace StokTakipKatmanli.WebUI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<DatabaseContext>(); //uygulamayý cs dosyasýna ekledik baðlantý adresi için
+			builder.Services.AddDbContext<DatabaseContext>(); //uygulama cs dosyasýna eklendi baðlantý adresi için
 
 			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); //oturum açma
 

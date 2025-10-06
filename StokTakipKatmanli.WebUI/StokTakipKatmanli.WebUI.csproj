@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StokTakipKatmanli.Data\StokTakipKatmanli.Data.csproj" />
+  </ItemGroup>
+
 </Project>
