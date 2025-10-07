@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StokTakipKatmanli.Data\StokTakipKatmanli.Data.csproj" />
+    <ProjectReference Include="..\StokTakipKatmanli.Service\StokTakipKatmanli.Service.csproj" />
   </ItemGroup>
 
 </Project>

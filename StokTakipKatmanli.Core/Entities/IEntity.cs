@@ -1,9 +1,15 @@
-﻿namespace StokTakipKatmanli.Core.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StokTakipKatmanli.Core.Entities
 {
-	public class IEntity
+	public interface IEntity
 	{
-		// Interface : arayüz - kumanda tuşları gibi çalışır
-		// her class da ortak olan prop durur
+		// Interface : arayüz, uzaktan kumanda tuşlarına benzer
+		//Her class kullanmak için id li interface oluşturuldu
 		public int Id { get; set; }
 	}
 }

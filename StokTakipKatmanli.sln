@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58 d17.14
+VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.WebUI", "StokTakipKatmanli.WebUI\StokTakipKatmanli.WebUI.csproj", "{2BC2B1F6-89E4-4735-9A1C-2EA91D122053}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.Core", "StokTakipKatmanli.Core\StokTakipKatmanli.Core.csproj", "{2570F9F0-E607-4CAD-9D7E-72E939CE2025}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.Data", "StokTakipKatmanli.Data\StokTakipKatmanli.Data.csproj", "{076F2806-8A69-4698-AC09-E83270698511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.Service", "StokTakipKatmanli.Service\StokTakipKatmanli.Service.csproj", "{F23948C0-A3EB-4C09-A103-DC1B4E59C3E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{076F2806-8A69-4698-AC09-E83270698511}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{076F2806-8A69-4698-AC09-E83270698511}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{076F2806-8A69-4698-AC09-E83270698511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F23948C0-A3EB-4C09-A103-DC1B4E59C3E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F23948C0-A3EB-4C09-A103-DC1B4E59C3E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F23948C0-A3EB-4C09-A103-DC1B4E59C3E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F23948C0-A3EB-4C09-A103-DC1B4E59C3E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

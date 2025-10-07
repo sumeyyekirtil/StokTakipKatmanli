@@ -2,7 +2,7 @@
 
 namespace StokTakipKatmanli.Core.Entities
 {
-	public class ProductImage
+	public class ProductImage : IEntity
 	{
 		public int Id { get; set; }
 
