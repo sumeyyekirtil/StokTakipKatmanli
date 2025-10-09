@@ -32,7 +32,13 @@ namespace StokTakipKatmanli.WebUI
             app.UseAuthorization();
 
             app.MapStaticAssets();
-            app.MapControllerRoute(
+
+            //endpoint - app changed (new scaffolding item - admin added) - controller - main
+			app.MapControllerRoute(
+			name: "areas",
+			pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}");
+
+			app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
