@@ -1,0 +1,22 @@
+﻿@*
+    Varsayılan görünüm için tarayıcı yoluyla empty view eklendi
+*@
+@model IEnumerable<Category>
+
+<li class="dropdown">
+    <a class="nv-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Kategoriler
+    </a>
+
+    <ul class="dropdown-menu">
+        @foreach (var category in Model)
+        {
+            <li>
+                <a class="dropdown-item" asp-controller="Categories" asp-action="Index" asp-route-id=@category.Id">
+                    @category.Name
+                </a>
+            </li>
+        }
+        <li><a class="dropdown-item" href="#">Action</a></li>
+    </ul>
+</li>
