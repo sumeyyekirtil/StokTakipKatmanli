@@ -41,15 +41,13 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Category collection, IFormFile? Image)
 		{
-			if (!ModelState.IsValid)
+			if (!ModelState.IsValid) //bir if var ise süslü paranteze gerek yok lakin parantez yok ise arkasına return eklemeliyiz
 				return View(collection);
 			try
 			{
 				if (Image is not null)
-				{
 					//adminde kullanmak için tool - helper eklendi
 					collection.Image = FileHelper.FileLoader(Image);
-				}
 				_context.Categories.Add(collection);
 				_context.SaveChanges();
 				return RedirectToAction(nameof(Index));
@@ -101,10 +99,12 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 		// POST: CategoriesController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, Category collection)
+		public ActionResult Delete(int id, Category collection, IFormFile? Image)
 		{
 			try
 			{
+				if (!string.IsNullOrEmpty(collection.Image)) //tekli işlemde gerek yok
+					FileHelper.FileRemover(collection.Image);
 				_context.Categories.Remove(collection);
 				_context.SaveChanges();
 				return RedirectToAction(nameof(Index));

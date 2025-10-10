@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="Image" />
-            <input type="hidden" asp-for="CreateDate" />
+            <input type="hidden" asp-for="CreateDate" /> @*tarih kayıtlı ve saklı tutması için*@
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -29,6 +29,10 @@
                 <label asp-for="Image" class="control-label"></label>
                 <input asp-for="Image" class="form-control" type="file" />
                 <span asp-validation-for="Image" class="text-danger"></span>
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <img src="~/Images/@Model.Image" height="118" />
+                }
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -52,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select> @*selectitem olduğu için select yaptık*@
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">

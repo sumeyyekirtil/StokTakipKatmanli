@@ -23,8 +23,9 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 		// GET: ProductsController
 		public ActionResult Index() //razor view - list
 		{
-			//return View(_context.Products.Include("Category")); //categori ismi yazdırmak için listede join işlemi yapıldı 1.yol
-			return View(_context.Products.Include(c => c.Category)); //2.yol
+			//categori ismi yazdırmak için listede join işlemi yapıldı 1.yol
+			//return View(_context.Products.Include("Category"));  //string olarak include etmek
+			return View(_context.Products.Include(c => c.Category)); //2.yol lambda ile join işlemi -> include
 		}
 
 		// GET: ProductsController/Details/5
@@ -81,12 +82,12 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 			{
 				try
 				{
-					if (resmiSil == true)
+					if (resmiSil == true) //resmi silmek isterse
 					{
 						FileHelper.FileRemover(collection.Image); //resmi db silmek için
 						collection.Image = string.Empty;
 					}
-					if (Image is not null)
+					if (Image is not null) //resmi silmek istemezse
 					{
 						collection.Image = FileHelper.FileLoader(Image);
 					}

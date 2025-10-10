@@ -20,7 +20,7 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 		// GET: SlidersController
 		public ActionResult Index() //add razor view - list
 		{
-			return View(_context.Sliders);
+			return View(_context.Sliders); //null referance exceptions hatası
 		}
 
 		// GET: SlidersController/Details/5
@@ -39,7 +39,7 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 		// POST: SlidersController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(Slider collection, IFormFile? Image)
+		public ActionResult Create(Slider collection, IFormFile? Image) //entities import, ımage import
 		{
 			if (ModelState.IsValid)
 			{
@@ -47,10 +47,10 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 				{
 					if (Image is not null)
 					{
-						string klasor = Directory.GetCurrentDirectory() + "/wwwroot/Images/";
+						string klasor = Directory.GetCurrentDirectory() + "/wwwroot/Images/"; //dosya yolu adresi
 						using var stream = new FileStream(klasor + Image.FileName, FileMode.Create); //yeni dosya olarak yükle
-						Image.CopyTo(stream);
-						collection.Image = Image.FileName;
+						Image.CopyTo(stream); //konumu kopyala
+						collection.Image = Image.FileName; //dosya adı ile kaydet
 					}
 					_context.Sliders.Add(collection);
 					_context.SaveChanges();
@@ -82,10 +82,10 @@ namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 				{
 					if (Image is not null)
 					{
-						string klasor = Directory.GetCurrentDirectory() + "/wwwroot/Images/";
+						string klasor = Directory.GetCurrentDirectory() + "/wwwroot/Images/"; //dosya yolu adresi
 						using var stream = new FileStream(klasor + Image.FileName, FileMode.Create); //yeni dosya olarak yükle
-						Image.CopyTo(stream);
-						collection.Image = Image.FileName;
+						Image.CopyTo(stream); //konumu kopyala
+						collection.Image = Image.FileName; //dosya adı ile kaydet
 					}
 					_context.Sliders.Update(collection);
 					_context.SaveChanges();
