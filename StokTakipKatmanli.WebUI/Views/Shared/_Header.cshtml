@@ -21,7 +21,7 @@
                 </ul>
                 <form action="/Products" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> <input type="search" name="q" class="form-control" placeholder="Ara..." aria-label="Search"> </form>
             </div>
-            @if (Context.User.Identity.IsAuthenticated)
+            @if (Context.User.Identity.IsAuthenticated) @*bu değer true/false döner*@
             {
                 <a class="btn btn-danger" asp-controller="Account" asp-action="LogOut">Oturumu Kapat <i class="bi bi-power"></i></a>
                 if (Context.User.IsInRole("Admin"))

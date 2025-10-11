@@ -8,6 +8,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
 {
 	public class AccountController : Controller
 	{
+		//kullanıcı işlemleri için ilk db bağlantı yapılı
 		private readonly IUserService _userService;
 
 		public AccountController(IUserService userService)
@@ -27,17 +28,16 @@ namespace StokTakipKatmanli.WebUI.Controllers
 
 		// Kullanıcı doğrulama işlemleri burada yapılacak (veritabanı kontrolü)
 		[HttpPost]
-		public IActionResult Login(string email, string password)
+		public IActionResult Login(string email, string password) //login de name lere bakarak parametre tanımlanır
 		{
 			var user = _userService.GetUser(u => u.Email == email && u.Password == password);
 			if (user != null)
 			{
-
 				// Giriş başarılı, kullanıcıyı yönlendir
 				var haklar = new List<Claim>() //kullanıcı hakları tanımladık
 				{
 					new(ClaimTypes.Email, user.Email), //claim = hak (kullanıcıya tanımlanan haklar)
-						new(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User") //giriş yapan kullanıcı admin yetkisiyle değilse user yetkisiyle giriş yapsın.
+						new(ClaimTypes.Role, user.IsAdmin? "Admin" : "User") //giriş yapan kullanıcı admin yetkisiyle değilse user yetkisiyle giriş yapsın.
 				};
 				var kullaniciKimligi = new ClaimsIdentity(haklar, "Login"); //kullanıcı için bir kimlik oluşturduk
 				ClaimsPrincipal claimsPrincipal = new(kullaniciKimligi); //bu sınıftan bir nesne oluşturup bilgilerde saklı haklar ile kural oluşturulabilir
