@@ -1,5 +1,8 @@
-using StokTakipKatmanli.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using StokTakipKatmanli.Data;
+using StokTakipKatmanli.Service.Abstract;
+using StokTakipKatmanli.Service.Concrete;
+using System.Security.Claims;
 
 namespace StokTakipKatmanli.WebUI
 {
@@ -14,13 +17,30 @@ namespace StokTakipKatmanli.WebUI
 
 			builder.Services.AddDbContext<DatabaseContext>(); //uygulama cs dosyasýna eklendi baðlantý adresi için
 
-			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); //oturum açma
-																											   
-            //InvalidOperationException: Unable to resolve service for type 'StokTakipKatmanli.Service.Abstract.IService`1[StokTakipKatmanli.Core.Entities.Slider]' while attempting to activate 'StokTakipKatmanli.WebUI.Controllers.HomeController'.
-            //this correct solved -> addscoped, after IService
+            //session iþlemi + app.UseSession ile kullanýma açýlýr
+			builder.Services.AddSession();
+
+			//InvalidOperationException: Unable to resolve service for type 'StokTakipKatmanli.Service.Abstract.IService`1[StokTakipKatmanli.Core.Entities.Slider]' while attempting to activate 'StokTakipKatmanli.WebUI.Controllers.HomeController'.
+			//birden fazla kez kullanýlan servisler için istek baþýna bir kez nesne oluþturduðundan kaynaklarý daha verimli kullanýr. AddTransient ise tamamen stateless iþlemler için mükemmeldir, çünkü her seferinde yeni bir nesne oluþturulmasý gerekiyorsa, bu yaklaþým en iyi performansý saðlar.
+			//this correct solved -> addscoped, after IService - 3version =>
+			builder.Services.AddScoped<ICategoryService, CategoryService>();
+			builder.Services.AddScoped<IUserService, UserService>();
+			builder.Services.AddTransient<IProductService, ProductService>();
+			builder.Services.AddScoped(typeof(IService<>), typeof(Service<>)); //Generic Service
 
 
-			var app = builder.Build();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); //oturum açma
+
+            //altýnda olmalý
+            //Authorization: Yetkilendirme: once servis olarak ekliyoruz
+            builder.Services.AddAuthorization(x =>
+            {
+                x.AddPolicy("AdminPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "Admin")); //bundan sonra controller lara policy belirtmeliyiz
+                x.AddPolicy("UserPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "Admin", "User"));
+            });
+
+
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -33,7 +53,9 @@ namespace StokTakipKatmanli.WebUI
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseSession();
+
+			app.UseAuthorization();
 
             app.MapStaticAssets();
 
