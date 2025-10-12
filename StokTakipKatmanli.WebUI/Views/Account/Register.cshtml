@@ -1,19 +1,14 @@
-﻿@*
-   Account - reagister - bootstrap
-*@
-@model StokTakipKatmanli.Core.Entities.User
+﻿@model User
 
 @{
-    ViewData["Title"] = "Kayıt Ol";
+    ViewData["Title"] = "Register";
 }
 
-<h1>Kayıt Ol</h1>
-
+<h4>Kayıt Ol</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Register">
-
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>

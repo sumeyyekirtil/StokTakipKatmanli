@@ -62,7 +62,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
 			return View();
 		}
 
-		public IActionResult Register() //empty view
+		public IActionResult Register() //create view - user class
 		{
 			// kayıt ol varsayılan metot
 			return View();
@@ -77,12 +77,10 @@ namespace StokTakipKatmanli.WebUI.Controllers
 				{
 					user.IsActive = true;
 					user.IsAdmin = false;
-					//_context.Users.Add(user);
-					//_context.SaveChanges();
 					_userService.AddUser(user);
 					_userService.Save();
 					TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
-                     <strong>Kayıt İşlemi Başarılı! Giriş Yapabilirsiniz.!</strong>
+                     <strong>Kayıt İşlemi Başarılı! Giriş Yapabilirsiniz ^_^</strong>
                      <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
                      </div>";
 					return RedirectToAction("Login", "Account");
