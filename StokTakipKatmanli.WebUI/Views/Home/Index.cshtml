@@ -17,7 +17,7 @@
                     <p>@item.Description</p>
                 </div>
             </div>
-        }
+        } 
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -32,17 +32,5 @@
 <h1 class="display-4 text-center mt-5">
     Ürünlerimiz
 </h1>
-<div class="row row-cols-3">
-    @foreach (var item in Model.Products)
-    {
-        <div class="col">
-            <a href="/Products/Detail/@item.Id">
-                <img src="~/Images/@item.Image" alt="@item.Name" class="img-fluid" />
-
-                <h3>@item.Name</h3>
-            </a>
-        </div>
-    }
-</div>
-
+@*ürün gösteriminde yazıdğımız shared - partial view çağırıldı*@
 <partial name="_Products" model="Model.Products" />

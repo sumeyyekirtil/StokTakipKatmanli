@@ -1,5 +1,5 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    birden çok ekranda ürün gösteriminde kullanılacağı için tek bir yerden yönetilebilecek partial view açıldı
 *@
 @model IEnumerable<Product>
 
@@ -7,10 +7,9 @@
     @foreach (var item in Model)
     {
         <div class="col mb-5">
-
             <div class="card h-100">
                 <!-- Product image-->
-                <img class="card-img-top" src="~/Images/@item.Image" alt="@item.Name">
+                <img class="card-img-top img-fluid" src="~/Images/@item.Image" alt="@item.Name">
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -28,4 +27,3 @@
         </div>
     }
 </div>
-

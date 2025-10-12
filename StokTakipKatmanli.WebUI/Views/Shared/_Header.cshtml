@@ -24,15 +24,15 @@
             @if (Context.User.Identity.IsAuthenticated) @*bu değer true/false döner*@
             {
                 <a class="btn btn-danger" asp-controller="Account" asp-action="LogOut">Oturumu Kapat <i class="bi bi-power"></i></a>
-                if (Context.User.IsInRole("Admin"))
+                if (Context.User.IsInRole("Admin")) @*kullanılan role admin role sahipse*@
                 {
                     <a class="btn btn-outline-dark ms-3" href="/Admin">Yönetim Paneli <i class="bi bi-search"></i></a>
                 }
             }
             else
             {
-                <a class="btn btn-primary ms-3" asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap <i class="bi bi-person-check"></i></a>
-                <a class="btn btn-success" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol <i class="bi bi-person-fill-add"></i></a>
+                <a class="btn btn-success ms-3" asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap <i class="bi bi-person-check"></i></a>
+                <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol <i class="bi bi-person-fill-add"></i></a>
             }
         </div>
     </nav>

@@ -33,7 +33,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
                 Sliders = _serviceSlider.GetAll(),//_context.Slider.toList yerine geçer
                 Products = _productService.GetProducts(p => p.IsActive && p.IsHome) //active ve gösterimde ise sayfada göster
             };
-            return View(model); //toList eklenmez ise foreach döngüsünde liste olmadýðý için çýktý vermez -> alýnan hata Invalid DbSet1 hatasýdýr
+            return View(); //toList eklenmez ise foreach döngüsünde liste olmadýðý için çýktý vermez -> alýnan hata Invalid DbSet1 hatasýdýr
 		}
 
         public IActionResult Privacy()

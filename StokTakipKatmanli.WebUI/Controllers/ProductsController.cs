@@ -13,10 +13,10 @@ namespace StokTakipKatmanli.WebUI.Controllers
 			_productService = productService;
 		}
 
-		public IActionResult Index(string q = "") //boş gelebilir //empty view
+		public IActionResult Index(string q = "") // search name = q -> boş gelebilir //empty view
 		{
 			//şartlı yazma (where) yerine service şartı lambda ile yazılacak
-			var model = _productService.GetProducts(p => p.IsActive && p.Name.Contains(q));
+			var model = _productService.GetProducts(p => p.IsActive && p.Name.Contains(q)); //q ile search de sorguya ekledik
 			return View();
 		}
 

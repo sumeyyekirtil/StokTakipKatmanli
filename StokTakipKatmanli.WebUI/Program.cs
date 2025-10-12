@@ -15,6 +15,10 @@ namespace StokTakipKatmanli.WebUI
 			builder.Services.AddDbContext<DatabaseContext>(); //uygulama cs dosyasýna eklendi baðlantý adresi için
 
 			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); //oturum açma
+																											   
+            //InvalidOperationException: Unable to resolve service for type 'StokTakipKatmanli.Service.Abstract.IService`1[StokTakipKatmanli.Core.Entities.Slider]' while attempting to activate 'StokTakipKatmanli.WebUI.Controllers.HomeController'.
+            //this correct solved -> addscoped, after IService
+
 
 			var app = builder.Build();
 
