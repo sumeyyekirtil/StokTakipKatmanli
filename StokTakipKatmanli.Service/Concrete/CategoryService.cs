@@ -33,7 +33,7 @@ namespace StokTakipKatmanli.Service.Concrete
 
 		public Category GetCategoryByProduct(int id)
 		{
-			return _context.Categories.Where(c => c.IsActive && c.Id == id).Include(c => c.Products).FirstOrDefault();
+			return _context.Categories.Where(c => c.IsActive && c.Id == id).Include(c => c.Products).FirstOrDefault(); //id ye göre gelenleri al
 		}
 
 		public void RemoveCategory(Category category)

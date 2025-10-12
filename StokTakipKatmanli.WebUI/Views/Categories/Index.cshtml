@@ -1,14 +1,13 @@
 ﻿@*
-    Categories - Index
+    Categories - Index (categoriden gelen verileri yansıtmak için açıldı)
 *@
-@* @model Category
+@model Category
 
 @{
     ViewData["Title"] = Model.Name + " Kategori Detay";
 }
 <h1 class="display-4 text-center mt-5">
-    @Model.Name Category
+    @Model.Name is Category
 </h1>
 
 <partial name="_Products" model="Model.Products" />
- *@

@@ -27,11 +27,11 @@ namespace StokTakipKatmanli.WebUI.Controllers
         //homepageviewmodel added
         //eğer iki service aynı anda kullanılacak ise -> view e 2 model aynı anda kullanamama durumundan dolayı -> çoklu abstract ları bir model e tanımlayıp -> o model üzerinden view ve controller kontrolleri sağlanır.
 		public IActionResult Index()
-        {
+        { //index te gösterilecek slide listesi için
             var model = new HomePageViewModel
             {
                 Sliders = _serviceSlider.GetAll(),//_context.Slider.toList yerine geçer
-                Products = _productService.GetProducts(p => p.IsActive && p.IsHome)
+                Products = _productService.GetProducts(p => p.IsActive && p.IsHome) //active ve gösterimde ise sayfada göster
             };
             return View(model); //toList eklenmez ise foreach döngüsünde liste olmadığı için çıktı vermez -> alınan hata Invalid DbSet1 hatasıdır
 		}

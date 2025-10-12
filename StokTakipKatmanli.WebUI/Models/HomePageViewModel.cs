@@ -2,6 +2,7 @@
 
 namespace StokTakipKatmanli.WebUI.Models
 {
+	//bir view de 2 model kullanmak için açılan model merge yeni model
 	public class HomePageViewModel
 	{
 		//sayfada 1 de ürün listesi, 1 slider listesi kullanacağız

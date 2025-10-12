@@ -1,13 +1,17 @@
 ﻿@model HomePageViewModel
+@*bir view de iki model kullanımını yeni model oluşturulup import edildi*@
 
-@*bootstrap kullanıldı*@
-<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+@*bootstrap kullanıldı - category den alınan slider için*@
+<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel"> @*data-bs-ride : kaymayı otomatik başlatır*@
     <div class="carousel-inner">
 
         @foreach (var item in Model.Sliders)
         {
-            <div class="carousel-item @(item == Model.Sliders.FirstOrDefault() ? "active" : "")">
-                <img src="~/Images/@item.Image" class="d-block w-100" alt="...">
+            <div class="carousel-item @(item == Model.Sliders.FirstOrDefault() ? "active" : "")"> @*active hepsi olmasın diye şarta bağlandı*@
+                <img src="~/Images/@item.Image" class="d-block w-100" alt="..." class="img-fluid">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>@item.Title</h5>
                     <p>@item.Description</p>
@@ -33,7 +37,7 @@
     {
         <div class="col">
             <a href="/Products/Detail/@item.Id">
-                <img src="~/Images/@item.Image" alt="@item.Name" />
+                <img src="~/Images/@item.Image" alt="@item.Name" class="img-fluid" />
 
                 <h3>@item.Name</h3>
             </a>

@@ -14,7 +14,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
 
 		public IActionResult Index(int id)
 		{
-			var model = _categoryService.GetCategoryByProduct(id);
+			var model = _categoryService.GetCategoryByProduct(id);  //id ye göre gelenleri al
 			return View(model);
 		}
 	}
