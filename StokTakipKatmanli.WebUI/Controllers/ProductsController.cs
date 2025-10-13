@@ -17,7 +17,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
 		{
 			//şartlı yazma (where) yerine service şartı lambda ile yazılacak
 			var model = _productService.GetProducts(p => p.IsActive && p.Name.Contains(q)); //q ile search de sorguya ekledik
-			return View();
+			return View(model);
 		}
 
 		public IActionResult Detail(int? id) //empty view

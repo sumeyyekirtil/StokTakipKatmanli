@@ -32,7 +32,7 @@ namespace StokTakipKatmanli.Service.Concrete
 
 		public Product GetProductByCategoryAndProductImages(int id)
 		{
-			return _context.Products.Where(c => c.IsActive && c.Id == id).Include(c => c.Category).FirstOrDefault(); //burada ürüne ürün resimleri de dahil edilecek
+			return _context.Products.Where(c => c.IsActive && c.Id == id).Include(c => c.Category).Include(c => c.ProductImages).FirstOrDefault(); // burada ürüne ürün resimleri de dahil edilecek!
 		}
 
 		public List<Product> GetProducts()

@@ -5,11 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.Data;
 using StokTakipKatmanli.WebUI.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace StokTakipKatmanli.WebUI.Areas.Admin.Controllers
 {
