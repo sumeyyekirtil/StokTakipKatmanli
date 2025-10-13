@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StokTakipKatmanli.Core.Entities;
+using StokTakipKatmanli.Service.Abstract;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StokTakipKatmanli.WebAPI.Controllers
 {
@@ -8,36 +9,68 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 	[ApiController]
 	public class ProductsController : ControllerBase
 	{
+		private readonly IService<Product> _service;
+
+		public ProductsController(IService<Product> service)
+		{
+			_service = service;
+		}
+
 		// GET: api/<ProductsController>
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public async Task<IEnumerable<Product>> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return await _service.GetAllAsync();
+		}
+
+		[HttpGet("GetHomePageProducts")]
+		public async Task<IEnumerable<Product>> GetHomePageProducts()
+		{
+			return await _service.GetAllAsync(p => p.IsActive && p.IsHome);
+		}
+
+		[HttpGet("GetProductsByCategoryId/{id}")]
+		public async Task<IEnumerable<Product>> GetProductsByCategoryId(int id)
+		{
+			return await _service.GetAllAsync(p => p.IsActive && p.CategoryId == id);
+		}
+
+		[HttpGet("GetProductsBySearch/{id?}")]
+		public async Task<IEnumerable<Product>> GetProductsBySearch(string id = "")
+		{
+			return await _service.GetAllAsync(p => p.IsActive && p.Name.Contains(id));
 		}
 
 		// GET api/<ProductsController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public async Task<Product> GetAsync(int id)
 		{
-			return "value";
+			return await _service.FindAsync(id);
 		}
 
 		// POST api/<ProductsController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public async Task PostAsync([FromBody] Product value)
 		{
+			await _service.AddAsync(value);
+			await _service.SaveChangesAsync();
 		}
 
 		// PUT api/<ProductsController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public async Task PutAsync(int id, [FromBody] Product value)
 		{
+			_service.Update(value);
+			await _service.SaveChangesAsync();
 		}
 
 		// DELETE api/<ProductsController>/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public async Task Delete(int id)
 		{
+			var kayit = await GetAsync(id);
+			_service.Delete(kayit);
+			await _service.SaveChangesAsync();
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StokTakipKatmanli.Core.Entities;
+using StokTakipKatmanli.Service.Abstract;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StokTakipKatmanli.WebAPI.Controllers
 {
@@ -8,36 +9,69 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 	[ApiController]
 	public class ProductImagesController : ControllerBase
 	{
+		private readonly IService<ProductImage> _service;
+
+		public ProductImagesController(IService<ProductImage> service)
+		{
+			_service = service;
+		}
+
 		// GET: api/<ProductImagesController>
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public async Task<IEnumerable<ProductImage>> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return await _service.GetAllAsync();
 		}
 
 		// GET api/<ProductImagesController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public async Task<ActionResult<ProductImage>> GetAsync(int id)
 		{
-			return "value";
+			var model = await _service.FindAsync(id);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			return Ok(model);
+		}
+
+		[HttpGet("GetProductImagesByProductId/{id}")]
+		public async Task<IEnumerable<ProductImage>> GetProductImagesByProductId(int id)
+		{
+			return await _service.GetAllAsync(p => p.ProductId == id);
 		}
 
 		// POST api/<ProductImagesController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public async Task<ActionResult<ProductImage>> PostAsync([FromBody] ProductImage value)
 		{
+			await _service.AddAsync(value);
+			await _service.SaveChangesAsync();
+
+			return Ok(value);
 		}
 
 		// PUT api/<ProductImagesController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public async Task<ActionResult<ProductImage>> PutAsync(int id, [FromBody] ProductImage value)
 		{
+			_service.Update(value);
+			await _service.SaveChangesAsync();
+			return Ok(value);
 		}
 
 		// DELETE api/<ProductImagesController>/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public async Task<ActionResult> DeleteAsync(int id)
 		{
+			var model = await _service.FindAsync(id);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			_service.Delete(model);
+			await _service.SaveChangesAsync();
+			return Ok();
 		}
 	}
 }

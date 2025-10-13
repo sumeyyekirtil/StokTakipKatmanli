@@ -18,10 +18,12 @@ namespace StokTakipKatmanli.WebAPI
 			builder.Services.AddOpenApi();
 			builder.Services.AddDbContext<DatabaseContext>();
 
+			builder.Services.AddScoped<IUserService, UserService>();
+
+			builder.Services.AddScoped(typeof(IService<>), typeof(Service<>)); // Generic Servis
 			builder.Services.AddScoped<ICategoryService, CategoryService>();
 			builder.Services.AddTransient<IProductService, ProductService>();
-			builder.Services.AddScoped<IUserService, UserService>();
-			builder.Services.AddScoped(typeof(IService<>), typeof(Service<>)); // Generic Servis
+
 
 			var app = builder.Build();
 

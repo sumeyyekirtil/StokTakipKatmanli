@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StokTakipKatmanli.Core.Entities;
+using StokTakipKatmanli.Service.Abstract;
 
 
 namespace StokTakipKatmanli.WebAPI.Controllers
@@ -7,36 +9,50 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 	[ApiController]
 	public class CategoriesController : ControllerBase
 	{
+		private readonly IService<Category> _categoryService;
+
+		public CategoriesController(IService<Category> categoryService)
+		{
+			_categoryService = categoryService;
+		}
+
 		// GET: api/<CategoriesController>
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public IEnumerable<Category> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return _categoryService.GetAll();
 		}
 
 		// GET api/<CategoriesController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public Category Get(int id)
 		{
-			return "value";
+			return _categoryService.Find(id);
 		}
 
 		// POST api/<CategoriesController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public void Post([FromBody] Category value)
 		{
+			_categoryService.Add(value);
+			_categoryService.SaveChanges();
 		}
 
 		// PUT api/<CategoriesController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public void Put(int id, [FromBody] Category value)
 		{
+			_categoryService.Update(value);
+			_categoryService.SaveChanges();
 		}
 
 		// DELETE api/<CategoriesController>/5
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
+			var kayit = Get(id);
+			_categoryService.Delete(kayit);
+			_categoryService.SaveChanges();
 		}
 	}
 }

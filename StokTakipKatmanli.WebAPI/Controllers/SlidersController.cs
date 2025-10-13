@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StokTakipKatmanli.Core.Entities;
+using StokTakipKatmanli.Service.Abstract;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StokTakipKatmanli.WebAPI.Controllers
 {
@@ -8,36 +9,60 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 	[ApiController]
 	public class SlidersController : ControllerBase
 	{
+		private readonly IService<Slider> _service;
+
+		public SlidersController(IService<Slider> service)
+		{
+			_service = service;
+		}
+
 		// GET: api/<SlidersController>
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public async Task<IEnumerable<Slider>> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return await _service.GetAllAsync();
 		}
 
 		// GET api/<SlidersController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public async Task<ActionResult<Slider>> GetAsync(int id)
 		{
-			return "value";
+			var model = await _service.FindAsync(id);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			return Ok(model);
 		}
 
 		// POST api/<SlidersController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public async Task PostAsync([FromBody] Slider value)
 		{
+			await _service.AddAsync(value);
+			await _service.SaveChangesAsync();
 		}
 
 		// PUT api/<SlidersController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public async Task PutAsync(int id, [FromBody] Slider value)
 		{
+			_service.Update(value);
+			await _service.SaveChangesAsync();
 		}
 
 		// DELETE api/<SlidersController>/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public async Task<ActionResult> DeleteAsync(int id)
 		{
+			var model = await _service.FindAsync(id);
+			if (model == null)
+			{
+				return NotFound();
+			}
+			_service.Delete(model);
+			await _service.SaveChangesAsync();
+			return Ok();
 		}
 	}
 }
