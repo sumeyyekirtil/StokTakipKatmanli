@@ -15,7 +15,7 @@ namespace StokTakipKatmanli.WebUI.Tools
 			mail.Body = body; //e posta içeriği
 			mail.IsBodyHtml = true; //html formatında gönderim
 			smtpClient.Port = 587; //smtp portu
-			smtpClient.Credentials = new NetworkCredential("mail@gmail.com", "mailsifresi"); //gönderen e-posta ve şifre
+			smtpClient.Credentials = new NetworkCredential("mail@gmail.com", "mailşifresi"); //gönderen e-posta ve şifre
 			smtpClient.EnableSsl = true; //ssl kullanımı
 			smtpClient.Send(mail); //e postayı gönder
 		}

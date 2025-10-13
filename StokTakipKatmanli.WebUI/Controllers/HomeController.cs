@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StokTakipKatmanli.Core.Entities;
+using StokTakipKatmanli.Data;
 using StokTakipKatmanli.Service.Abstract;
 using StokTakipKatmanli.WebUI.Models;
 using StokTakipKatmanli.WebUI.Tools;
@@ -54,7 +55,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
             try
             {
                 //bootstrap kullanýldý
-				MailHelper.SendMail("mail@gmail.com", "Siteden email geldi", message);
+				MailHelper.SendMail("mail@gmail.com", "Siteden email geldi", mesaj);
 				TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
                      <strong>Teþekkürler! Mesajýnýz Ýletildi!</strong>
                      <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
