@@ -45,7 +45,7 @@ namespace StokTakipKatmanli.Service.Concrete
 			return _context.Products.Where(expression).ToList();
 		}
 
-		public Product GetProductsByCategory(int id)
+		public Product GetProductByCategory(int id)
 		{
 			return _context.Products.Where(c => c.IsActive && c.Id == id).Include(c => c.Category).FirstOrDefault();
 		}

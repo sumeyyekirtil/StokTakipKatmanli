@@ -11,6 +11,12 @@ namespace StokTakipKatmanli.Service.Concrete
 		//implement interface
 	{
 		public readonly DatabaseContext _context; //data layered using added
+
+		public CategoryService(DatabaseContext context)
+		{
+			_context = context;
+		}
+
 		public void AddCategory(Category category)
 		{
 			_context.Categories.Add(category);

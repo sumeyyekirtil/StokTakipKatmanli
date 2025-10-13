@@ -9,7 +9,7 @@ namespace StokTakipKatmanli.Service.Abstract
 		List<Product> GetProducts();
 		List<Product> GetProducts(Expression<Func<Product, bool>> expression);
 		Product GetProduct(int id);
-		Product GetProductsByCategory(int id); //product içinde category kullanımı sağlar
+		Product GetProductByCategory(int id); //product içinde category kullanımı sağlar
 		Product GetProductByCategoryAndProductImages(int id); //resim eklemek için
 		void AddProduct(Product product);
 		void UpdateProduct(Product product);

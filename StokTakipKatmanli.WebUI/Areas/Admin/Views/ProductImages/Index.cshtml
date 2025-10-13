@@ -31,7 +31,10 @@
                     </a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
+                    @item.Product.Name
+                    <a href="/Products/Detail/@item.ProductId" class="btn btn-outline-primary" title="Ürün Sayfasını Gör" target="_blank">
+                        <i class="bi bi-search-heart"></i>
+                    </a>
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
