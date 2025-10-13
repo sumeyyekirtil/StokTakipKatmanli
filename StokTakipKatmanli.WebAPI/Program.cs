@@ -1,4 +1,8 @@
 
+using StokTakipKatmanli.Data;
+using StokTakipKatmanli.Service.Abstract;
+using StokTakipKatmanli.Service.Concrete;
+
 namespace StokTakipKatmanli.WebAPI
 {
 	public class Program
@@ -12,6 +16,12 @@ namespace StokTakipKatmanli.WebAPI
 			builder.Services.AddControllers();
 			// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 			builder.Services.AddOpenApi();
+			builder.Services.AddDbContext<DatabaseContext>();
+
+			builder.Services.AddScoped<ICategoryService, CategoryService>();
+			builder.Services.AddTransient<IProductService, ProductService>();
+			builder.Services.AddScoped<IUserService, UserService>();
+			builder.Services.AddScoped(typeof(IService<>), typeof(Service<>)); // Generic Servis
 
 			var app = builder.Build();
 

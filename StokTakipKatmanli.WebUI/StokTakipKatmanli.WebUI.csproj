@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StokTakipKatmanli.Service\StokTakipKatmanli.Service.csproj" />
+    <ProjectReference Include="..\StokTakipKatmanli.WebAPI\StokTakipKatmanli.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>
