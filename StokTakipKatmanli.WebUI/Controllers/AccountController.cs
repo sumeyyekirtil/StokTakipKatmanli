@@ -72,25 +72,25 @@ namespace StokTakipKatmanli.WebUI.Controllers
 		public IActionResult Register(User user)
 		{
 			if (ModelState.IsValid)
-			{
-				try
-				{
-					user.IsActive = true;
-					user.IsAdmin = false;
-					_userService.AddUser(user);
-					_userService.Save();
-					TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
-                     <strong>Kayıt İşlemi Başarılı! Giriş Yapabilirsiniz ^_^</strong>
-                     <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
-                     </div>";
-					return RedirectToAction("Login", "Account");
-				}
-				catch (Exception)
-				{
-					ModelState.AddModelError("", "Kayıt sırasında bir hata oluştu!");
-				}
-			}
-			return View(user);
+            {
+                try
+                {
+                    user.IsActive = true;
+                    user.IsAdmin = false;
+                    _userService.AddUser(user);
+                    _userService.Save();
+                    TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
+                    <strong>Kayıt işlemi başarılı! Giriş yapabilirsiniz.</strong> 
+                    <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
+                    </div> ";
+                    return RedirectToAction("Login", "Account");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Kayıt sırasında bir hata oluştu!");
+                }                
+            }
+            return View(user);
 		}
 	}
 }

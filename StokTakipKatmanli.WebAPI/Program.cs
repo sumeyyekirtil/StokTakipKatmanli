@@ -16,7 +16,7 @@ namespace StokTakipKatmanli.WebAPI
 			builder.Services.AddControllers();
 			// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 			builder.Services.AddOpenApi();
-			builder.Services.AddDbContext<DatabaseContext>();
+			builder.Services.AddDbContext<DatabaseContext>(); //vt baðlantýsý
 
 			builder.Services.AddScoped<IUserService, UserService>();
 

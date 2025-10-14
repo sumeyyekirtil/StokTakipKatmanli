@@ -1,0 +1,75 @@
+﻿@*
+   İletişim için view - start bootstrap iletişim kullanıldı
+*@
+@{
+    ViewData["Title"] = "İletişim";
+}
+
+<h1 class="display-5 text-center mb-3">
+    Bize Ulaşın
+</h1>
+
+<div class="row justify-content-center">
+    <div class="col-xl-12">
+        <div class="card border-0 rounded-3 shadow-lg overflow-hidden">
+            <div class="card-body p-0">
+                <div class="row g-0">
+                    <div class="col-sm-6 d-none d-sm-block bg-image">
+                        @*google - maps search - share - html connect copy-paste*@
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3060.010707242012!2d32.85551857545728!3d39.918776585796856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34fab72748413%3A0x52b6e0b68b56d8f4!2sKocatepe%2C%2006420%20%C3%87ankaya%2FAnkara!5e0!3m2!1str!2str!4v1760302057611!5m2!1str!2str" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="col-sm-6 p-4">
+                        <div class="text-center">
+                            <div class="h3 fw-light">İletişim Formu</div>
+                            <p class="mb-4 text-muted">Formu doldurarak bize ulaşabilirsiniz.</p>
+                        </div>
+
+                        <form id="contactForm" asp-action="ContactUs">
+
+                            <!-- Name Input -->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="nameSurname" id="nameSurname" type="text" placeholder="Ad Soyad" data-sb-validations="required" required />
+                                <label for="name">Ad Soyad</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Ad gereklidir.</div>
+                            </div>
+
+                            <!-- Email Input -->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="email" id="email" type="email" placeholder="Email" data-sb-validations="required,email" required />
+                                <label for="emailAddress">Email</label>
+                                <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email gereklidir.</div>
+                                <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Geçersiz Email</div>
+                            </div>
+
+                            <!-- Message Input -->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="message" name="message" type="text" placeholder="Mesaj" style="height: 10rem;" data-sb-validations="required" required></textarea>
+                                <label for="message">Mesaj</label>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">Mesaj gereklidir</div>
+                            </div>
+
+                            <!-- Submit success message -->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form Gönderildi!</div>
+                                </div>
+                            </div>
+
+                            <!-- Submit error message -->
+                            <div class="d-none" id="submitErrorMessage">
+                                <div class="text-center text-danger mb-3">Mesaj Gönderilemedi!</div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Gönder</button>
+                            </div>
+                        </form>
+                        <!-- End of contact form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
