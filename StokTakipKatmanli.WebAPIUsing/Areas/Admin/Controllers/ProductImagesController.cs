@@ -19,8 +19,8 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "http://localhost:5058/api/ProductImages";
-		static string _apiAdres2 = "http://localhost:5058/api/Products";
+		static string _apiAdres = "http://localhost:7205/api/ProductImages";
+		static string _apiAdres2 = "http://localhost:7205/api/Products";
 		
 		async Task YukleAsync()
 		{

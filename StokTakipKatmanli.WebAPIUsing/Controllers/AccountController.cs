@@ -14,7 +14,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "http://localhost:5058/api/Auth/";
+		static string _apiAdres = "https://localhost:7205/api/Auth/";
 
 		public IActionResult Index()
 		{
