@@ -16,7 +16,7 @@ namespace StokTakipKatmanli.WebUI.Controllers
 			_userService = userService;
 		}
 
-		public IActionResult Index()
+		public IActionResult Index() //empty view
 		{
 			return View();
 		}
@@ -30,25 +30,27 @@ namespace StokTakipKatmanli.WebUI.Controllers
 		[HttpPost]
 		public IActionResult Login(string email, string password) //login de name lere bakarak parametre tanımlanır
 		{
-			var user = _userService.GetUser(u => u.Email == email && u.Password == password);
+			var user = _userService.GetUser(u => u.Email == email && u.Password == password && u.IsActive);
 			if (user != null)
 			{
 				// Giriş başarılı, kullanıcıyı yönlendir
 				var haklar = new List<Claim>() //kullanıcı hakları tanımladık
 				{
 					new(ClaimTypes.Email, user.Email), //claim = hak (kullanıcıya tanımlanan haklar)
-						new(ClaimTypes.Role, user.IsAdmin? "Admin" : "User") //giriş yapan kullanıcı admin yetkisiyle değilse user yetkisiyle giriş yapsın.
+						new(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User") //giriş yapan kullanıcı admin yetkisiyle değilse user yetkisiyle giriş yapsın.
 				};
 				var kullaniciKimligi = new ClaimsIdentity(haklar, "Login"); //kullanıcı için bir kimlik oluşturduk
 				ClaimsPrincipal claimsPrincipal = new(kullaniciKimligi); //bu sınıftan bir nesne oluşturup bilgilerde saklı haklar ile kural oluşturulabilir
-				HttpContext.SignInAsync(claimsPrincipal); //yukarıdaki yetkilerle sisteme giriş yaptık
+				HttpContext.SignInAsync(claimsPrincipal); //yukarıdaki yetkilerle sisteme giriş yapıldı
+				@TempData["Message"] = "<div class='alert alert-success'>Giriş Başarılı! Hoşgeldiniz ^_^</div>";
 				return RedirectToAction("Index", "Home");
-			}else
+			}
+			else
 			{
 				// Giriş başarısız, hata mesajı göster
-				@TempData["Message"] = "<div class='alert alert-danger'>Giriş Başarısız</div>";
+				@TempData["Message"] = "<div class='alert alert-danger'>Giriş Başarısız! Lütfen mail ve şifrenizi kontrol ediniz!!!</div>";
+				return RedirectToAction("Login", "Account");
 			}
-			return RedirectToAction("Login", "Account");
 		}
 
 		public ActionResult LogOut() //çıkış yap aktivasyonu : layout
@@ -79,11 +81,11 @@ namespace StokTakipKatmanli.WebUI.Controllers
                     user.IsAdmin = false;
                     _userService.AddUser(user);
                     _userService.Save();
-                    TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
+					TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
                     <strong>Kayıt işlemi başarılı! Giriş yapabilirsiniz.</strong> 
                     <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
                     </div> ";
-                    return RedirectToAction("Login", "Account");
+					return RedirectToAction("Login", "Account");
                 }
                 catch (Exception)
                 {

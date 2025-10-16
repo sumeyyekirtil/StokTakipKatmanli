@@ -15,7 +15,7 @@
                         <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Slider Yönetimi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductImages" asp-action="Index">Resim Yönetimi</a>
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Brands" asp-action="Index">Marka Yönetimi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Admin" asp-controller="Categories" asp-action="Index">Kategori Yönetimi</a>
@@ -24,18 +24,15 @@
                         <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Ürün Yönetimi</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductImages" asp-action="Index">Ürün Resim Yönetimi</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">Kullanıcı Yönetimi</a>
                     </li>
-                    @await Component.InvokeAsync("Category")
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ContactUs">İletişim</a>
-                    </li>
                 </ul>
-                <form action="/Products" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> <input type="search" name="q" class="form-control" placeholder="Ara..." aria-label="Search"> </form>
             </div>
-            <a class="btn btn-outline-info me-3" asp-area="" asp-controller="Home" asp-action="Index" target="_blank">Siteyi İncele<i class="bi bi-power"></i></a> @*blank ile siteden çıkış yapmaz*@
-            <a class="btn btn-danger" asp-area="" asp-controller="Account" asp-action="LogOut">Oturumu Kapat<i class="bi bi-power"></i></a>
-            @*asp-area="" : kullanılmazsa admin döner*@
+            <a class="btn btn-outline-info me-3" href="/" target="_blank">Siteyi İncele <i class="bi bi-power"></i></a> @*blank ile siteden çıkış yapmaz*@
+            <a class="btn btn-danger" asp-area="" asp-controller="Account" asp-action="Logout">Oturumu Kapat<i class="bi bi-power"></i></a>@*asp-area="" : kullanılmazsa admin döner*@
         </div>
     </nav>
 </header>

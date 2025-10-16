@@ -4,10 +4,11 @@ namespace StokTakipKatmanli.Core.Entities
 {
 	public class User
 	{
+		//eğer sonradan ? nullable eklenirse add-migration Nullable -> update-database zorunlu!
 		public int Id { get; set; }
 
 		[Display(Name = "Kullanıcı Adı"), StringLength(50)]
-		public string UserName { get; set; }
+		public string UserName { get; set; } //? koyulmazsa zorunlu alan olur dolayısıyla create de input olmalıdır yoksa kayıt yapılamaz!!
 
 		[Display(Name = "Şifre"), StringLength(50), Required(ErrorMessage = "{0} Boş Geçilemez")]
 		public string Password { get; set; }

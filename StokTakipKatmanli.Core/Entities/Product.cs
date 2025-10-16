@@ -23,7 +23,7 @@ namespace StokTakipKatmanli.Core.Entities
 		[Display(Name = "Anasayfa")]
 		public bool IsHome { get; set; }
 
-		[Display(Name = "Stok")]
+		[Display(Name = "Stok"), MinLength(0)]
 		public int Stock { get; set; }
 
 		[Display(Name = "Fiyat")]
