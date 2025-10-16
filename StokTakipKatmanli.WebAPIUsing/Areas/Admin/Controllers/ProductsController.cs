@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.WebAPIUsing.Tools;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 {
@@ -17,15 +15,15 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 			var kategoriler = await _httpClient.GetFromJsonAsync<List<Category>>(_apiAdres2);
 			ViewBag.CategoryId = new SelectList(kategoriler, "Id", "Name");
 		}
-		private readonly HttpClient _httpClient;
 
+		private readonly HttpClient _httpClient;
 		public ProductsController(HttpClient httpClient)
 		{
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "https://localhost:7205/Api/Products";
-		static string _apiAdres2 = "https://localhost:7205/Api/Categories";
+		static string _apiAdres = "http://localhost:5058/Api/Products";
+		static string _apiAdres2 = "http://localhost:5058/Api/Categories";
 		// GET: ProductsController
 		public async Task<ActionResult> Index()
 		{
@@ -34,14 +32,14 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: ProductsController/Details/5
-		public async Task<ActionResult> DetailsAsync(int id)
+		public async Task<ActionResult> Details(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Product>($"{_apiAdres}/{id}");
 			return View(model);
 		}
 
 		// GET: ProductsController/Create
-		public async Task<ActionResult> CreateAsync()
+		public async Task<ActionResult> Create()
 		{
 			await YukleAsync();
 			return View();
@@ -75,7 +73,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: ProductsController/Edit/5
-		public async Task<ActionResult> EditAsync(int id)
+		public async Task<ActionResult> Edit(int id)
 		{
 			await YukleAsync();
 			var model = await _httpClient.GetFromJsonAsync<Product>($"{_apiAdres}/{id}");
@@ -85,7 +83,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: ProductsController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> EditAsync(int id, Product collection, IFormFile? Image, bool resmiSil)
+		public async Task<ActionResult> Edit(int id, Product collection, IFormFile? Image, bool resmiSil)
 		{
 			if (ModelState.IsValid)
 			{
@@ -116,7 +114,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: ProductsController/Delete/5
-		public async Task<ActionResult> DeleteAsync(int id)
+		public async Task<ActionResult> Delete(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Product>($"{_apiAdres}/{id}");
 			return View(model);
@@ -125,7 +123,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: ProductsController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> DeleteAsync(int id, Product collection)
+		public async Task<ActionResult> Delete(int id, Product collection)
 		{
 			try
 			{

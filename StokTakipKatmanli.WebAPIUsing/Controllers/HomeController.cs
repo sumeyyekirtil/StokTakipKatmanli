@@ -14,7 +14,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "http://localhost:7205/api/";
+		static string _apiAdres = "http://localhost:5058/Api/";
 
 		public async Task<IActionResult> Index()
 		{
@@ -44,19 +44,20 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			{
 				MailHelper.SendMail("mail@gmail.com", "Siteden email geldi", mesaj);
 				TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
-                <strong>Teþekkürler.. Mesajýnýz Gönderildi!</strong> 
+                <strong>Teşekkürler.. Mesajınız Gönderildi!</strong> 
                 <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
                 </div> ";
 			}
 			catch (Exception)
 			{
 				TempData["Message"] = @"<div class=""alert alert-danger alert-dismissible fade show"" role=""alert"">
-                <strong>Hata Oluþtu! Mesaj Gönderilemedi!</strong> 
+                <strong>Hata Oluştu! Mesaj Gönderilemedi!</strong> 
                 <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
                 </div> ";
 			}
 			return RedirectToAction("ContactUs");
 		}
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

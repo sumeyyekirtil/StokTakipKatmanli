@@ -14,12 +14,13 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "https://localhost:7205/api/Auth/";
+		static string _apiAdres = "http://localhost:5058/Api/Auth/";
 
 		public IActionResult Index()
 		{
 			return View();
 		}
+
 		public IActionResult Login()
 		{
 			return View();
@@ -84,7 +85,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 					if (sonuc.IsSuccessStatusCode)
 					{
 						TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
-                        <strong>Kayıt işlemi başarılı! Giriş yapabilirsiniz.</strong> 
+                        <strong>Kayıt İşlemi Başarılı! Giriş Yapabilirsiniz.</strong> 
                         <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
                         </div> ";
 						return RedirectToAction("Login", "Account");

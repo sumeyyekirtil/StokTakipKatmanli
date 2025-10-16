@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.WebAPIUsing.Tools;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 {
@@ -11,7 +9,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 	[Authorize(Policy = "AdminPolicy")]
 	public class CategoriesController : Controller
 	{
-		static string _apiAdres = "https://localhost:7205/api/Categories";
+		static string _apiAdres = "http://localhost:5058/Categories";
 		HttpClient _httpClient = new HttpClient(); 
 		// .net framework deki yapıyı kullanarak
 												   
@@ -23,7 +21,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: CategoriesController/Details/5
-		public async Task<ActionResult> DetailsAsync(int id)
+		public async Task<ActionResult> Details(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Category>($"{_apiAdres}/{id}");
 			return View(model);
@@ -38,7 +36,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: CategoriesController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> CreateAsync(Category collection, IFormFile? Image)
+		public async Task<ActionResult> Create(Category collection, IFormFile? Image)
 		{
 			if (ModelState.IsValid)
 			{
@@ -62,7 +60,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: CategoriesController/Edit/5
-		public async Task<ActionResult> EditAsync(int id)
+		public async Task<ActionResult> Edit(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Category>($"{_apiAdres}/{id}");
 			return View(model);
@@ -71,7 +69,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: CategoriesController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> EditAsync(int id, Category collection, IFormFile? Image)
+		public async Task<ActionResult> Edit(int id, Category collection, IFormFile? Image)
 		{
 			if (ModelState.IsValid)
 			{
@@ -95,15 +93,16 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: CategoriesController/Delete/5
-		public ActionResult Delete(int id)
+		public async Task<ActionResult> Delete(int id)
 		{
-			return View();
+			var model = await _httpClient.GetFromJsonAsync<Category>($"{_apiAdres}/{id}");
+			return View(model);
 		}
 
 		// POST: CategoriesController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> DeleteAsync(int id, Category collection, IFormFile? Image)
+		public async Task<ActionResult> Delete(int id, Category collection)
 		{
 			try
 			{

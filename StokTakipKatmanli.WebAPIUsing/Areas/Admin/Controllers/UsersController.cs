@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StokTakipKatmanli.Core.Entities;
 
@@ -9,24 +8,22 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 	[Authorize(Policy = "AdminPolicy")]
 	public class UsersController : Controller
 	{
-
 		private readonly HttpClient _httpClient;
-
 		public UsersController(HttpClient httpClient)
 		{
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "https://localhost:7205/api/Users";
+		static string _apiAdres = "http://localhost:5058/Api/Users";
 		// GET: UsersController
-		public async Task<ActionResult> IndexAsync()
+		public async Task<ActionResult> Index()
 		{
 			var model = await _httpClient.GetFromJsonAsync<List<User>>(_apiAdres);
 			return View(model);
 		}
 
 		// GET: UsersController/Details/5
-		public async Task<ActionResult> DetailsAsync(int id)
+		public async Task<ActionResult> Details(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<User>($"{_apiAdres}/{id}");
 			return View(model);
@@ -41,7 +38,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: UsersController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> CreateAsync(User collection)
+		public async Task<ActionResult> Create(User collection)
 		{
 			if (ModelState.IsValid)
 			{
@@ -63,7 +60,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: UsersController/Edit/5
-		public async Task<ActionResult> EditAsync(int id)
+		public async Task<ActionResult> Edit(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<User>($"{_apiAdres}/{id}");
 			return View(model);
@@ -72,7 +69,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: UsersController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> EditAsync(int id, User collection)
+		public async Task<ActionResult> Edit(int id, User collection)
 		{
 			if (ModelState.IsValid)
 			{
@@ -94,7 +91,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: UsersController/Delete/5
-		public async Task<ActionResult> DeleteAsync(int id)
+		public async Task<ActionResult> Delete(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<User>($"{_apiAdres}/{id}");
 			return View(model);
@@ -103,7 +100,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: UsersController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> DeleteAsync(int id, User collection)
+		public async Task<ActionResult> Delete(int id, User collection)
 		{
 			try
 			{

@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.WebAPIUsing.Tools;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 {
@@ -12,22 +10,21 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 	public class SlidersController : Controller
 	{
 		private readonly HttpClient _httpClient;
-
 		public SlidersController(HttpClient httpClient)
 		{
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "https://localhost:7205/Api/Sliders";
+		static string _apiAdres = "http://localhost:5058/Api/Sliders";
 		// GET: SlidersController
-		public async Task<ActionResult> IndexAsync()
+		public async Task<ActionResult> Index()
 		{
 			var model = await _httpClient.GetFromJsonAsync<List<Slider>>(_apiAdres);
 			return View(model);
 		}
 
 		// GET: SlidersController/Details/5
-		public async Task<ActionResult> DetailsAsync(int id)
+		public async Task<ActionResult> Details(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Slider>($"{_apiAdres}/{id}");
 			return View(model);
@@ -42,7 +39,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: SlidersController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> CreateAsync(Slider collection, IFormFile? Image)
+		public async Task<ActionResult> Create(Slider collection, IFormFile? Image)
 		{
 			if (ModelState.IsValid)
 			{
@@ -66,7 +63,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: SlidersController/Edit/5
-		public async Task<ActionResult> EditAsync(int id)
+		public async Task<ActionResult> Edit(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Slider>($"{_apiAdres}/{id}");
 			return View(model);
@@ -99,7 +96,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: SlidersController/Delete/5
-		public async Task<ActionResult> DeleteAsync(int id)
+		public async Task<ActionResult> Delete(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<Slider>($"{_apiAdres}/{id}");
 			return View(model);
@@ -108,7 +105,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: SlidersController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> DeleteAsync(int id, Slider collection)
+		public async Task<ActionResult> Delete(int id, Slider collection)
 		{
 			try
 			{

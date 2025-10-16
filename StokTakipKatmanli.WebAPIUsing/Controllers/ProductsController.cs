@@ -6,7 +6,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 	public class ProductsController : Controller
 	{
 		private readonly HttpClient _httpClient;
-		string _apiAdres = "http://localhost:7205/api/";
+		string _apiAdres = "http://localhost:5058/Api/";
 
 		public ProductsController(HttpClient httpClient)
 		{

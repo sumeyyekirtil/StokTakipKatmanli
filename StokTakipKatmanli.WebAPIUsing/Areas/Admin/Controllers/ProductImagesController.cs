@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.WebAPIUsing.Tools;
-using System.Xml.Linq;
 
 namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 {
@@ -13,14 +11,13 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 	public class ProductImagesController : Controller
 	{
 		private readonly HttpClient _httpClient;
-
 		public ProductImagesController(HttpClient httpClient)
 		{
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "http://localhost:7205/api/ProductImages";
-		static string _apiAdres2 = "http://localhost:7205/api/Products";
+		static string _apiAdres = "http://localhost:5058/Api/ProductImages";
+		static string _apiAdres2 = "http://localhost:5058/Api/Products";
 		
 		async Task YukleAsync()
 		{
@@ -28,21 +25,21 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 			ViewBag.ProductId = new SelectList(liste, "Id", "Name");
 		}
 		// GET: ProductImagesController
-		public async Task<ActionResult> IndexAsync()
+		public async Task<ActionResult> Index()
 		{
 			var model = await _httpClient.GetFromJsonAsync<List<ProductImage>>(_apiAdres);
 			return View(model);
 		}
 
 		// GET: ProductImagesController/Details/5
-		public async Task<ActionResult> DetailsAsync(int id)
+		public async Task<ActionResult> Details(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<ProductImage>($"{_apiAdres}/{id}");
 			return View(model);
 		}
 
 		// GET: ProductImagesController/Create
-		public async Task<ActionResult> CreateAsync()
+		public async Task<ActionResult> Create()
 		{
 			await YukleAsync();
 			return View();
@@ -51,7 +48,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: ProductImagesController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> CreateAsync(ProductImage collection, IFormFile? Name)
+		public async Task<ActionResult> Create(ProductImage collection, IFormFile? Name)
 		{
 			if (ModelState.IsValid)
 			{
@@ -62,7 +59,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 					var response = await _httpClient.PostAsJsonAsync(_apiAdres, collection);
 					if (response.IsSuccessStatusCode)
 					{
-						return RedirectToAction(nameof(IndexAsync));
+						return RedirectToAction(nameof(Index));
 					}
 					ModelState.AddModelError("", "Kayıt Başarısız!");
 				}
@@ -76,7 +73,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: ProductImagesController/Edit/5
-		public async Task<ActionResult> EditAsync(int id)
+		public async Task<ActionResult> Edit(int id)
 		{
 			await YukleAsync();
 			var model = await _httpClient.GetFromJsonAsync<ProductImage>($"{_apiAdres}/{id}");
@@ -86,7 +83,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: ProductImagesController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> EditAsync(int id, ProductImage collection, IFormFile? Name)
+		public async Task<ActionResult> Edit(int id, ProductImage collection, IFormFile? Name)
 		{
 			if (ModelState.IsValid)
 			{
@@ -97,7 +94,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 					var response = await _httpClient.PutAsJsonAsync(_apiAdres + "/" + id, collection);
 					if (response.IsSuccessStatusCode)
 					{
-						return RedirectToAction(nameof(IndexAsync));
+						return RedirectToAction(nameof(Index));
 					}
 					ModelState.AddModelError("", "Kayıt Başarısız!");
 				}
@@ -111,7 +108,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		}
 
 		// GET: ProductImagesController/Delete/5
-		public async Task<ActionResult> DeleteAsync(int id)
+		public async Task<ActionResult> Delete(int id)
 		{
 			var model = await _httpClient.GetFromJsonAsync<ProductImage>($"{_apiAdres}/{id}");
 			return View(model);
@@ -120,7 +117,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 		// POST: ProductImagesController/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> DeleteAsync(int id, ProductImage collection)
+		public async Task<ActionResult> Delete(int id, ProductImage collection)
 		{
 			try
 			{
@@ -129,7 +126,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Areas.Admin.Controllers
 				{
 					if (!string.IsNullOrEmpty(collection.Name))
 						FileHelper.FileRemover(collection.Name);
-					return RedirectToAction(nameof(IndexAsync));
+					return RedirectToAction(nameof(Index));
 				}
 				ModelState.AddModelError("", "Kayıt Başarısız!");
 			}
