@@ -85,9 +85,9 @@ namespace StokTakipKatmanli.Service.Concrete
 			return _context.SaveChanges();
 		}
 
-		public Task<int> SaveChangesAsync()
+		public async Task<int> SaveChangesAsync()
 		{
-			return _context.SaveChangesAsync();
+			return await _context.SaveChangesAsync();
 		}
 
 		public void Update(T entity)

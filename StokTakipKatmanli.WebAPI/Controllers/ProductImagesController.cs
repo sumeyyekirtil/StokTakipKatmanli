@@ -57,6 +57,7 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 		{
 			_service.Update(value);
 			await _service.SaveChangesAsync();
+
 			return Ok(value);
 		}
 

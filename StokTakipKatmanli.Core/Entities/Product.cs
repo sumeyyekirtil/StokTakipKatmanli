@@ -34,6 +34,12 @@ namespace StokTakipKatmanli.Core.Entities
 
 		[Display(Name = "Kategori")]
 		public Category? Category { get; set; } //navigation property
+
+		[Display(Name = "Marka")]
+		public int? BrandId { get; set; }
+
+		[Display(Name = "Marka")]
+		public Brand? Brand { get; set; } // navigation property
 		public IList<ProductImage>? ProductImages { get; set; }
 		//bir ürünün birden fazla resmi olabilir - olmayabilir?
 	}

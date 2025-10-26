@@ -45,7 +45,6 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 			{
 				return BadRequest();
 			}
-
 			_context.Entry(user).State = EntityState.Modified;
 
 			try
@@ -63,7 +62,6 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 					throw;
 				}
 			}
-
 			return NoContent();
 		}
 

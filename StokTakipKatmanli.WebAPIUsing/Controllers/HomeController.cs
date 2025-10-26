@@ -3,6 +3,7 @@ using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.WebAPIUsing.Models;
 using StokTakipKatmanli.WebAPIUsing.Tools;
 using System.Diagnostics;
+using System.Net.Http;
 
 namespace StokTakipKatmanli.WebAPIUsing.Controllers
 {
@@ -14,16 +15,14 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "http://localhost:5142/Api/";
-
+		static string _apiAdres = "https://localhost:7194/Api/";
 		public async Task<IActionResult> Index()
 		{
 			var model = new HomePageViewModel
 			{
-				
+				Sliders = await _httpClient.GetFromJsonAsync<List<Slider>>(_apiAdres + "Sliders"),
+				Products = await _httpClient.GetFromJsonAsync<List<Product>>(_apiAdres + "Products/GetHomePageProducts")
 			};
-			model.Sliders = await _httpClient.GetFromJsonAsync<List<Slider>>(_apiAdres + "Sliders");
-			model.Products = await _httpClient.GetFromJsonAsync<List<Product>>(_apiAdres + "Products/GetHomePageProducts");
 			return View(model);
 		}
 
@@ -36,7 +35,6 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 		{
 			return View();
 		}
-
 		[HttpPost]
 		public IActionResult ContactUs(string nameSurname, string email, string message)
 		{
@@ -45,19 +43,20 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			{
 				MailHelper.SendMail("mail@gmail.com", "Siteden email geldi", mesaj);
 				TempData["Message"] = @"<div class=""alert alert-success alert-dismissible fade show"" role=""alert"">
-                <strong>Teşekkürler.. Mesajınız Gönderildi!</strong> 
+                <strong>Teþekkürler.. Mesajýnýz Gönderildi!</strong> 
                 <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
-                </div> ";
+				</div> ";
 			}
 			catch (Exception)
 			{
 				TempData["Message"] = @"<div class=""alert alert-danger alert-dismissible fade show"" role=""alert"">
-                <strong>Hata Oluştu! Mesaj Gönderilemedi!</strong> 
-                <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
-                </div> ";
+				<strong>Hata Oluþtu! Mesaj Gönderilemedi!</strong> 
+				<button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
+				</div> ";
 			}
 			return RedirectToAction("ContactUs");
 		}
+
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

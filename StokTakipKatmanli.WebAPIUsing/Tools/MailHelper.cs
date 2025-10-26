@@ -1,23 +1,23 @@
 ﻿using System.Net;
-using System.Net.Mail; //MailMessage, SmtpClient
+using System.Net.Mail; // MailMessage, SmtpClient
 
 namespace StokTakipKatmanli.WebAPIUsing.Tools
 {
 	public class MailHelper
 	{
-		public static void SendMail(string to, string subject, string body) //contactus metot içi tanımlamalarına yönlendirir
+		public static void SendMail(string to, string subject, string body)
 		{
 			MailMessage mail = new MailMessage();
-			SmtpClient smtpClient = new SmtpClient("smtp@gmail.com");
-			mail.From = new MailAddress("mail@gmail.com"); //gönderen eposta adresi
-			mail.To.Add(to); //alıcı e posta adresi
-			mail.Subject = subject; //e posta konusu
-			mail.Body = body; //e posta içeriği
-			mail.IsBodyHtml = true; //html formatında gönderim
-			smtpClient.Port = 587; //smtp portu
-			smtpClient.Credentials = new NetworkCredential("mail@gmail.com", "mailşifresi"); //gönderen e-posta ve şifre
-			smtpClient.EnableSsl = true; //ssl kullanımı
-			smtpClient.Send(mail); //e postayı gönder
+			SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+			mail.From = new MailAddress("mail@gmail.com"); // Gönderen e-posta adresi
+			mail.To.Add(to); // Alıcı e-posta adresi
+			mail.Subject = subject; // E-posta konusu
+			mail.Body = body; // E-posta içeriği
+			mail.IsBodyHtml = true; // HTML formatında gönderim
+			smtpClient.Port = 587; // SMTP portu
+			smtpClient.Credentials = new NetworkCredential("mail@gmail.com", "mailşifresi"); // Gönderen e-posta ve şifre
+			smtpClient.EnableSsl = true; // SSL kullanımı
+			smtpClient.Send(mail); // E-postayı gönder
 		}
 	}
 }

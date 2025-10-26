@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
+ï»¿using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
 namespace StokTakipKatmanli.WebAPIUsing
@@ -12,7 +12,7 @@ namespace StokTakipKatmanli.WebAPIUsing
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
-			builder.Services.AddHttpClient(); // HttpClient dependency injection olarak kullanabilmek için bu þekilde servisini ekliyoruz.
+			builder.Services.AddHttpClient(); // HttpClient dependency injection olarak kullanabilmek iÃ§in bu ÅŸekilde servisini ekliyoruz.
 			builder.Services.AddSession();
 
 			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -46,7 +46,7 @@ namespace StokTakipKatmanli.WebAPIUsing
 			app.MapControllerRoute(
 			name: "areas",
 			pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}"
-		    );
+			);
 
 			app.MapControllerRoute(
 				name: "default",

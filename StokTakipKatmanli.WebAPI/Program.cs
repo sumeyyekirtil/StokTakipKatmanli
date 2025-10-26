@@ -1,5 +1,4 @@
-
-using StokTakipKatmanli.Data;
+﻿using StokTakipKatmanli.Data;
 using StokTakipKatmanli.Service.Abstract;
 using StokTakipKatmanli.Service.Concrete;
 
@@ -16,14 +15,20 @@ namespace StokTakipKatmanli.WebAPI
 			builder.Services.AddControllers();
 			// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 			builder.Services.AddOpenApi();
-			builder.Services.AddDbContext<DatabaseContext>(); //vt ba�lant�s�
+			builder.Services.AddDbContext<DatabaseContext>(); //vt bağlantısı
 
 			builder.Services.AddScoped<IUserService, UserService>();
-
 			builder.Services.AddScoped(typeof(IService<>), typeof(Service<>)); // Generic Servis
 			builder.Services.AddScoped<ICategoryService, CategoryService>();
-			builder.Services.AddTransient<IProductService, ProductService>();
+			builder.Services.AddScoped<IProductService, ProductService>();
 
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("default", policy =>
+				{
+					policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod(); // cors hatasýna takýlan tüm istekleri kabul et
+				});
+			});
 
 			var app = builder.Build();
 
@@ -36,6 +41,10 @@ namespace StokTakipKatmanli.WebAPI
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();
+
+			app.UseStaticFiles(); // api de statik dosyaları kullanmak için
+
+			app.UseCors("default");
 
 
 			app.MapControllers();

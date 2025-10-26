@@ -2,7 +2,7 @@
 
 namespace StokTakipKatmanli.Core.Entities
 {
-	public class User
+	public class User : IEntity
 	{
 		//eğer sonradan ? nullable eklenirse add-migration Nullable -> update-database zorunlu!
 		public int Id { get; set; }
@@ -20,10 +20,10 @@ namespace StokTakipKatmanli.Core.Entities
 		public string? Name { get; set; } 
 		//? işareti bu alanın nullable geçilebilir olmasını sağlar
 
-		[Display(Name = "Soyadı")]
+		[Display(Name = "Soyadı"), StringLength(50)]
 		public string? Surname { get; set; }
 
-		[Display(Name = "Aktif")]
+		[Display(Name = "Aktif?")]
 		public bool IsActive { get; set; }
 
 		[Display(Name = "Admin?")]
