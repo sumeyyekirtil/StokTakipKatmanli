@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.Service",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.WebAPI", "StokTakipKatmanli.WebAPI\StokTakipKatmanli.WebAPI.csproj", "{C29AD480-FB61-4760-8CAC-A427EB3CE011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokTakipKatmanli.WebAPIUsing", "StokTakipKatmanli.WebAPIUsing\StokTakipKatmanli.WebAPIUsing.csproj", "{E03B79C7-14B4-4D40-9C4C-322879E68290}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{C29AD480-FB61-4760-8CAC-A427EB3CE011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C29AD480-FB61-4760-8CAC-A427EB3CE011}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C29AD480-FB61-4760-8CAC-A427EB3CE011}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E03B79C7-14B4-4D40-9C4C-322879E68290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E03B79C7-14B4-4D40-9C4C-322879E68290}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E03B79C7-14B4-4D40-9C4C-322879E68290}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E03B79C7-14B4-4D40-9C4C-322879E68290}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

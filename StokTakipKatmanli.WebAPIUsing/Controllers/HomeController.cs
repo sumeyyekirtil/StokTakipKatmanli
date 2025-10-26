@@ -14,7 +14,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "http://localhost:5058/Api/";
+		static string _apiAdres = "http://localhost:5142/Api/";
 
 		public async Task<IActionResult> Index()
 		{
