@@ -11,7 +11,7 @@ namespace StokTakipKatmanli.WebAPIUsing
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-
+			
 			builder.Services.AddHttpClient(); // HttpClient dependency injection olarak kullanabilmek için bu şekilde servisini ekliyoruz.
 			builder.Services.AddSession();
 

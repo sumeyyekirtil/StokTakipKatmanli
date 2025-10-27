@@ -15,13 +15,13 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			_httpClient = httpClient;
 		}
 
-		static string _apiAdres = "https://localhost:7194/Api/";
+		static string _apiAdres = "https://localhost:7205/";
 		public async Task<IActionResult> Index()
 		{
 			var model = new HomePageViewModel
 			{
-				Sliders = await _httpClient.GetFromJsonAsync<List<Slider>>(_apiAdres + "Sliders"),
-				Products = await _httpClient.GetFromJsonAsync<List<Product>>(_apiAdres + "Products/GetHomePageProducts")
+				Sliders = await _httpClient.GetFromJsonAsync<List<Slider>>(_apiAdres + "api/sliders"),
+				Products = await _httpClient.GetFromJsonAsync<List<Product>>(_apiAdres + "api/products/GetHomePageProducts"),
 			};
 			return View(model);
 		}
@@ -57,7 +57,7 @@ namespace StokTakipKatmanli.WebAPIUsing.Controllers
 			return RedirectToAction("ContactUs");
 		}
 
-
+		
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

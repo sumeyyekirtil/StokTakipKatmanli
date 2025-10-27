@@ -39,6 +39,7 @@ namespace StokTakipKatmanli.WebAPI
 			}
 
 			app.UseHttpsRedirection();
+			app.UseRouting();
 
 			app.UseAuthorization();
 
@@ -48,6 +49,7 @@ namespace StokTakipKatmanli.WebAPI
 
 
 			app.MapControllers();
+
 
 			app.Run();
 		}

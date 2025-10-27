@@ -2,6 +2,7 @@
 using StokTakipKatmanli.Core.Entities;
 using StokTakipKatmanli.Service.Abstract;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StokTakipKatmanli.WebAPI.Controllers
 {
@@ -9,6 +10,7 @@ namespace StokTakipKatmanli.WebAPI.Controllers
 	[ApiController]
 	public class SlidersController : ControllerBase
 	{
+
 		private readonly IService<Slider> _service;
 
 		public SlidersController(IService<Slider> service)
